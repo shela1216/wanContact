@@ -26,7 +26,7 @@ const settings = {
 	*/
 	captions: {
 		/** Neccessary: The caption of a failure-panel */
-		failed: { caption: `<span style='color: #da0000'>未中</span>` },
+		failed: { caption: `<span style='color: #da0000'>銘謝惠顧</span>` },
 		/** Neccessary: The caption of a won-panel (default) */
 		default: { caption: `<span style='color: #18d100'>1</span>` },
 		/** Optional: Overwrites a special-type of price */
@@ -53,6 +53,7 @@ function generate_random_panels(max_panels, win_chances) {
 
 	/** Shuffled Array of panels (0 = Fail | >0 = Win) */
 	var panels = [
+		// ...Array( max_panels - win_chances ).fill( 0 ),
 		...Array.from(Array(win_chances).keys())
 	].sort((a, b) => 0.5 - Math.random());
 	return panels;
