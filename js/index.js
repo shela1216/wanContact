@@ -12,13 +12,13 @@ const settings = {
 		/** The number of rows of the grid */
 		rows: 5,
 		/** The number of columns of the grid */
-		cols: 5
+		cols: 2
 	},
 	chance: {
 		/** How many wins the grid should have */
-		wins: 25,
+		wins: 5,
 		/** How many tries the user have to find a win-panel */
-		attempts: 25
+		attempts: 10
 	},
 	/**
 		Use the captions as link-tags. There you can add the coupon-parameters which can be read from another page.
@@ -28,21 +28,12 @@ const settings = {
 		/** Neccessary: The caption of a failure-panel */
 		failed: { caption: `<span style='color: #da0000'>銘謝惠顧</span>` },
 		/** Neccessary: The caption of a won-panel (default) */
-		default: { caption: `<span style='color: #18d100'>1</span>` },
+		default: { caption: `<span style='color: #18d100'>MyCard 500點</span>` },
 		/** Optional: Overwrites a special-type of price */
-		1: { caption: `<span style='color: #18d100'>2</span>` },
-		2: { caption: `<span style='color: #18d100'>3</span>` },
-		3: { caption: `<span style='color: #18d100'>4</span>` },
-		4: { caption: `<span style='color: #18d100'>5</span>` },
-		5: { caption: `<span style='color: #18d100'>6</span>` },
-		6: { caption: `<span style='color: #18d100'>7</span>` },
-		7: { caption: `<span style='color: #18d100;'>8</span>` },
-		8: { caption: `<span style='color: #18d100;'>9</span>` },
-		9: { caption: `<span style='color: #18d100;'>10</span>` },
-		10: { caption: `<span style='color: #18d100;'>11</span>` },
-		11: { caption: `<span style='color: #18d100;'>9</span>` },
-		12: { caption: `<span style='color: #18d100;'>9</span>` },
-		13: { caption: `<span style='color: #18d100;'>9</span>` }
+		1: { caption: `<span style='color: #18d100'>MyCard 200點</span>` },
+		2: { caption: `<span style='color: #18d100'>開運手環</span>` },
+		3: { caption: `<span style='color: #18d100'>MyCard 500點</span>` },
+		4: { caption: `<span style='color: #18d100'>古風提袋</span>` },
 	}
 };
 /** The number of the panels in grid (rows x columns) */
@@ -53,7 +44,7 @@ function generate_random_panels(max_panels, win_chances) {
 
 	/** Shuffled Array of panels (0 = Fail | >0 = Win) */
 	var panels = [
-		// ...Array( max_panels - win_chances ).fill( 0 ),
+		...Array( max_panels - win_chances ).fill( 0 ),
 		...Array.from(Array(win_chances).keys())
 	].sort((a, b) => 0.5 - Math.random());
 	return panels;
@@ -70,10 +61,13 @@ function create_panel_html(max_panels) {
 
 		var panel_type = panel_array[i];
 		var caption = settings.captions.failed.caption;
-		if (panel_type <= 0) panel_type = panel_array.length;
+		// if (panel_type <= 0) panel_type = panel_array.length;
 		if (panel_type >= 1) {
 			panel_type = panel_type.toString();
-			caption = `<span style='color: #18d100;'>${panel_type}</span>`
+			caption = settings.captions.default.caption;
+			if( Object.keys( settings.captions ).includes( panel_type ) ) {
+				caption = settings.captions[ panel_type ].caption;
+			}
 		}
 
 		html += `
