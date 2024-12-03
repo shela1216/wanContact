@@ -32,7 +32,7 @@ const settings = {
 		/** Optional: Overwrites a special-type of price */
 		
 		0: { caption: `<span style='color: #ff712a'>指定人唱歌</span>` },
-		1: { caption: `<span style='color: #18d100'>MyCard170點<br>(月卡)</span>` },
+		1: { caption: `<span style='color: #18d100'>星巴克150飲料券</span>` },
 		2: { caption: `<span style='color: #18d100'>星巴克150飲料券</span>` },
 		3: { caption: `<span style='color: #18d100'>開運手鍊</span>` },
 		4: { caption: `<span style='color: #18d100'>古風提袋</span>` },
